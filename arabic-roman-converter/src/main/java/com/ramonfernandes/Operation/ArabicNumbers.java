@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class ArabicNumbers extends Numbers {
-
 	public String convertArabicToRoman(int arabicNumber) {
 		String result = "";
 		int index = 0;

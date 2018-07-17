@@ -1,4 +1,4 @@
-package ramonfernandes.tests;
+package com.ramonfernandes.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,5 +51,10 @@ public class TestsRomanToArabic {
 	@Test
 	public  void testRomanToArabicTwenty() {
 		assertEquals(20, number.convertRomanToArabic("XX"));
+	}
+
+	@Test
+	public  void testRomanToArabicThreeThousandEightHundreAndEightyEight() {
+		assertEquals(3888, number.convertRomanToArabic("MMMDCCCLXXXVIII"));
 	}
 }
