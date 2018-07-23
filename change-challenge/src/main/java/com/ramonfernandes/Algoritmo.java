@@ -48,8 +48,12 @@ public class Algoritmo {
     private String stringfyArray(String[] vetor) {
         String result = "";
         for (String valor : vetor)
-            result += valor;
+            result = result +"-"+ valor;
         return result;
+    }
+
+    public List getCaminhos(){
+        return resultado;
     }
 
 }
