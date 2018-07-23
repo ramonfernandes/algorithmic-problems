@@ -8,6 +8,7 @@ public class Algoritmo {
 
     private List<String> resultado = new ArrayList<String>();
     private int[] notasDisponiveis;
+    private static int nRecursoes;
 
     public void setNotasDisponiveis(int[] notas) {
         this.notasDisponiveis = notas;
@@ -31,6 +32,7 @@ public class Algoritmo {
     }
 
     private void adicionaNaListaDeResultados(String caminhoPossivel) {
+        nRecursoes++;
         String[] splittedArray = caminhoPossivel.split("-");
         Arrays.sort(splittedArray);
         caminhoPossivel = stringfyArray(splittedArray);
@@ -56,6 +58,10 @@ public class Algoritmo {
         for(Object caminho : resultado.toArray())
             System.out.println(caminho);
         System.out.println("---");
+    }
+
+    public int getnRecursoes(){
+        return nRecursoes;
     }
 
 }

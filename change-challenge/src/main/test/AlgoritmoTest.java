@@ -37,6 +37,7 @@ public class AlgoritmoTest {
     public void relatorios(){
         algoritmo.printCaminhos();
         System.out.println("Tempo de execução em milissegundos: " + (System.currentTimeMillis() - tempo));
+        System.out.println("Numero de Recusões: " + algoritmo.getnRecursoes());
     }
 
 }
