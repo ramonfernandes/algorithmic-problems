@@ -33,10 +33,18 @@ public class AlgoritmoTest {
         Assert.assertEquals(10, algoritmo.getNumeroDeCombinacoesPossiveis(50));
     }
 
+    @Test
+    public void testSizeToValueFiftyWithNotesOneTwoTenAndTwentyFive(){
+        algoritmo.setNotasDisponiveis(new int[]{1, 2, 10, 25});
+        Assert.assertEquals(106, algoritmo.getNumeroDeCombinacoesPossiveis(50));
+    }
+
     @After
     public void relatorios(){
         algoritmo.printCaminhos();
         System.out.println("Tempo de execução em milissegundos: " + (System.currentTimeMillis() - tempo));
+        System.out.println("Numero de Recusões: " + algoritmo.getnRecursoes());
+        System.out.println("---");
     }
 
 }

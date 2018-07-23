@@ -8,13 +8,14 @@ public class Algoritmo {
 
     private List<String> resultado = new ArrayList<String>();
     private int[] notasDisponiveis;
+    private static int nRecursoes;
 
     public void setNotasDisponiveis(int[] notas) {
         this.notasDisponiveis = notas;
     }
 
     public int getNumeroDeCombinacoesPossiveis(int valor) {
-        chamaCalculaParaTodasAsNotas(valor, "");
+        chamaCalculaParaTodasAsNotas(valor, "", notasDisponiveis[0]);
         return resultado.size();
     }
 
@@ -27,10 +28,11 @@ public class Algoritmo {
         } else if (valor < 0)
             return;
         else
-            chamaCalculaParaTodasAsNotas(valor, caminhoAtual);
+            chamaCalculaParaTodasAsNotas(valor, caminhoAtual, atual);
     }
 
     private void adicionaNaListaDeResultados(String caminhoPossivel) {
+        nRecursoes++;
         String[] splittedArray = caminhoPossivel.split("-");
         Arrays.sort(splittedArray);
         caminhoPossivel = stringfyArray(splittedArray);
@@ -39,23 +41,27 @@ public class Algoritmo {
         }
     }
 
-    private void chamaCalculaParaTodasAsNotas(int valor, String caminhoAtual) {
+    private void chamaCalculaParaTodasAsNotas(int valor, String caminhoAtual, int ultimaNota) {
         for (int nota : notasDisponiveis) {
-            calcula(valor, nota, caminhoAtual);
+            if (nota >= ultimaNota)
+                calcula(valor, nota, caminhoAtual);
         }
     }
 
     private String stringfyArray(String[] vetor) {
         String result = "";
         for (String valor : vetor)
-            result = result +"-"+ valor;
+            result = result + "-" + valor;
         return result;
     }
 
-    public void printCaminhos(){
-        for(Object caminho : resultado.toArray())
+    public void printCaminhos() {
+        for (Object caminho : resultado.toArray())
             System.out.println(caminho);
-        System.out.println("---");
+    }
+
+    public int getnRecursoes() {
+        return nRecursoes;
     }
 
 }
