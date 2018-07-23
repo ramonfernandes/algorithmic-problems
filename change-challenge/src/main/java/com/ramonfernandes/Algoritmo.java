@@ -36,9 +36,7 @@ public class Algoritmo {
         String[] splittedArray = caminhoPossivel.split("-");
         Arrays.sort(splittedArray);
         caminhoPossivel = stringfyArray(splittedArray);
-        if (!resultado.contains(caminhoPossivel)) {
-            resultado.add(caminhoPossivel);
-        }
+        resultado.add(caminhoPossivel);
     }
 
     private void chamaCalculaParaTodasAsNotas(int valor, String caminhoAtual, int ultimaNota) {
