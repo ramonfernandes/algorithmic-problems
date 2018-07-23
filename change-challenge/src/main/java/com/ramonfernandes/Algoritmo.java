@@ -52,8 +52,10 @@ public class Algoritmo {
         return result;
     }
 
-    public List getCaminhos(){
-        return resultado;
+    public void printCaminhos(){
+        for(Object caminho : resultado.toArray())
+            System.out.println(caminho);
+        System.out.println("---");
     }
 
 }

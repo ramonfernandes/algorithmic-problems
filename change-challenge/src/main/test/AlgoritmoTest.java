@@ -7,10 +7,12 @@ import org.junit.Test;
 public class AlgoritmoTest {
 
     private Algoritmo algoritmo;
+    private long tempo;
 
     @Before
     public void setup(){
         algoritmo = new Algoritmo();
+        tempo = System.currentTimeMillis();
     }
 
     @Test
@@ -32,9 +34,9 @@ public class AlgoritmoTest {
     }
 
     @After
-    public void printCaminhos(){
-        for(Object caminho : algoritmo.getCaminhos().toArray())
-            System.out.println(caminho);
-        System.out.println("---");
+    public void relatorios(){
+        algoritmo.printCaminhos();
+        System.out.println("Tempo de execução em milissegundos: " + (System.currentTimeMillis() - tempo));
     }
+
 }
