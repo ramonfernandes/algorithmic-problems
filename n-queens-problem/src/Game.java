@@ -7,7 +7,8 @@ public class Game {
 			return queens;
 		for (int xR = 0; xR < x; xR++) {
 			for (int yR = 0; yR < y; yR++) {
-				Stack<Queen> queenCopia = queens;
+				Stack<Queen> queenCopia = new Stack<>();
+				queens.forEach(queen -> queenCopia.push(queen));
 				while (!queenCopia.isEmpty()) {
 					Queen queen = queenCopia.pop();
 					if(queen.equalsXorY(xR, yR) || isDiagonal(queen.getX(), queen.getY(), xR, yR)) {
@@ -15,8 +16,14 @@ public class Game {
 						break;
 					}
 				}
-				if(queenCopia.isEmpty())
-					disposicaoValida(xR, yR, contador-1, addQueenIntoList(queens, new Queen(xR, yR)));
+				if(queenCopia.isEmpty()){
+					Stack<Queen> queenResult =
+							disposicaoValida(x, y, contador-1, addQueenIntoList(queens, new Queen(xR, yR)));
+					if(queenResult != null)
+						return queenResult;
+					else
+						return null;
+				}
 			}
 		}
 		return null;
@@ -29,7 +36,7 @@ public class Game {
 	}
 
 	public Stack<Queen> addQueenIntoList(Stack<Queen> stack, Queen queen){
-		stack.add(queen);
+		stack.push(queen);
 		return stack;
 	}
 

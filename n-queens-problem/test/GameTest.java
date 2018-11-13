@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Stack;
+
 public class GameTest {
 
     private int[][] matrizTeste = new int[5][5];
@@ -33,5 +35,11 @@ public class GameTest {
                     Assert.assertFalse(game.isDiagonal(2, 2, i, j));
             }
         }
+    }
+
+    @Test
+    public void ultimateTestPorra(){
+        Stack<Queen> result = game.disposicaoValida(7, 7, 7, new Stack<Queen>());
+        Assert.assertNotNull(result);
     }
 }
