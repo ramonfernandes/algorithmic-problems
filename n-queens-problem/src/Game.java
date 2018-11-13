@@ -19,4 +19,10 @@ public class Game {
 		return null;
 	}
 
+	public boolean isDiagonal(int x, int y, int xR, int yR){
+		if(Math.abs(x - xR) == Math.abs(y - yR))
+			return true;
+		return false;
+	}
+
 }
