@@ -3,7 +3,7 @@ import java.util.Stack;
 public class Game {
 
 	public Stack<Queen> disposicaoValida(int x, int y, int contador, Stack<Queen> queens) {
-		if (contador == 0)
+		if (queens.size() == contador)
 			return queens;
 		for (int xR = 0; xR < x; xR++) {
 			for (int yR = 0; yR < y; yR++) {
@@ -18,11 +18,11 @@ public class Game {
 				}
 				if(queenCopia.isEmpty()){
 					Stack<Queen> queenResult =
-							disposicaoValida(x, y, contador-1, addQueenIntoList(queens, new Queen(xR, yR)));
+							disposicaoValida(x, y, contador, addQueenIntoList(queens, new Queen(xR, yR)));
 					if(queenResult != null)
 						return queenResult;
 					else
-						return null;
+						queens.pop();
 				}
 			}
 		}
