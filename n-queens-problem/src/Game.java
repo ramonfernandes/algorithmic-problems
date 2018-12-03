@@ -1,10 +1,17 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Game {
 
+	private ArrayList<Stack<Queen>> stacks = new ArrayList<>();
+
 	public Stack<Queen> disposicaoValida(int x, int y, int contador, Stack<Queen> queens) {
-		if (queens.size() == contador)
-			return queens;
+		if (queens.size() == contador) {
+			Stack<Queen> queenResult = new Stack<>();
+			queens.forEach(queen -> queenResult.push(queen));
+			stacks.add(queenResult);
+			return null;
+		}
 		for (int xR = 0; xR < x; xR++) {
 			for (int yR = 0; yR < y; yR++) {
 				Stack<Queen> queenCopia = new Stack<>();
@@ -40,4 +47,7 @@ public class Game {
 		return stack;
 	}
 
+	public ArrayList<Stack<Queen>> getStacks() {
+		return stacks;
+	}
 }
