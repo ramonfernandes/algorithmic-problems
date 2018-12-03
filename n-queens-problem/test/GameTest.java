@@ -38,8 +38,8 @@ public class GameTest {
     }
 
     @Test
-    public void ultimateTestPorra(){
-        Stack<Queen> result = game.disposicaoValida(7, 7, 7, new Stack<Queen>());
+    public void ultimateTest(){
+        Stack<Queen> result = game.disposicaoValida(7, 7, 7, new Stack<Queen>(), 0, 0);
         Assert.assertNotNull(game.getStacks().size());
     }
 }

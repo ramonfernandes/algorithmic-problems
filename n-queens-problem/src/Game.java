@@ -5,15 +5,15 @@ public class Game {
 
 	private ArrayList<Stack<Queen>> stacks = new ArrayList<>();
 
-	public Stack<Queen> disposicaoValida(int x, int y, int contador, Stack<Queen> queens) {
+	public Stack<Queen> disposicaoValida(int x, int y, int contador, Stack<Queen> queens, int xRi, int yRi) {
 		if (queens.size() == contador) {
 			Stack<Queen> queenResult = new Stack<>();
 			queens.forEach(queen -> queenResult.push(queen));
 			stacks.add(queenResult);
 			return null;
 		}
-		for (int xR = 0; xR < x; xR++) {
-			for (int yR = 0; yR < y; yR++) {
+		for (int xR = xRi; xR < x; xR++) {
+			for (int yR = yRi; yR < y; yR++) {
 				Stack<Queen> queenCopia = new Stack<>();
 				queens.forEach(queen -> queenCopia.push(queen));
 				while (!queenCopia.isEmpty()) {
@@ -25,13 +25,14 @@ public class Game {
 				}
 				if(queenCopia.isEmpty()){
 					Stack<Queen> queenResult =
-							disposicaoValida(x, y, contador, addQueenIntoList(queens, new Queen(xR, yR)));
+							disposicaoValida(x, y, contador, addQueenIntoList(queens, new Queen(xR, yR)), xR, yR);
 					if(queenResult != null)
 						return queenResult;
 					else
 						queens.pop();
 				}
 			}
+			yRi = 0;
 		}
 		return null;
 	}
