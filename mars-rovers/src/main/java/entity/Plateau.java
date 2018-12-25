@@ -25,7 +25,7 @@ public class Plateau {
     }
 
     public void landRover(Rover rover) throws NoValidPositionException {
-        if (checkRoverConflict(rover.getCoordinateX(), rover.getCoordinateY()))
+        if (checkLocationAvaliable(rover.getCoordinateX(), rover.getCoordinateY()))
             placeRover(rover);
         else {
             rover = findNewPositionToLandTheRover(rover);
@@ -37,20 +37,21 @@ public class Plateau {
         Direction semaphore = Direction.NORTH;
         int firstCoordinateTriedX = rover.getCoordinateX();
         int firstCoordinateTriedY = rover.getCoordinateY();
-        int count = 1;
-        while (!checkRoverConflict(rover.getCoordinateX(), rover.getCoordinateY())) {
+        int count = 0;
+        while (!checkLocationAvaliable(rover.getCoordinateX(), rover.getCoordinateY())) {
             switch (semaphore) {
                 case NORTH:
+                    count += 1;
                     rover = new Rover(firstCoordinateTriedX, firstCoordinateTriedY + count, rover.getDirection());
                     break;
                 case EAST:
                     rover = new Rover(firstCoordinateTriedX + count, firstCoordinateTriedY, rover.getDirection());
                     break;
                 case SOUTH:
-                    rover = new Rover(firstCoordinateTriedX - count, firstCoordinateTriedY, rover.getDirection());
+                    rover = new Rover(firstCoordinateTriedX, firstCoordinateTriedY - count, rover.getDirection());
                     break;
                 case WEST:
-                    rover = new Rover(firstCoordinateTriedX, firstCoordinateTriedY - count, rover.getDirection());
+                    rover = new Rover(firstCoordinateTriedX - count, firstCoordinateTriedY, rover.getDirection());
                     break;
             }
             semaphore = semaphore.getRight();
@@ -60,7 +61,6 @@ public class Plateau {
                     && firstCoordinateTriedY - count < 0) {
                 throw new NoValidPositionException();
             }
-            count += 1;
         }
         return rover;
     }
@@ -73,18 +73,18 @@ public class Plateau {
     private boolean checkIfIsPossibleToMove(Rover rover) {
         switch (rover.getDirection()) {
             case NORTH:
-                return checkRoverConflict(rover.getCoordinateX(), rover.getCoordinateY() + 1);
+                return checkLocationAvaliable(rover.getCoordinateX(), rover.getCoordinateY() + 1);
             case EAST:
-                return checkRoverConflict(rover.getCoordinateX() + 1, rover.getCoordinateY());
+                return checkLocationAvaliable(rover.getCoordinateX() + 1, rover.getCoordinateY());
             case SOUTH:
-                return checkRoverConflict(rover.getCoordinateX(), rover.getCoordinateY() - 1);
+                return checkLocationAvaliable(rover.getCoordinateX(), rover.getCoordinateY() - 1);
             case WEST:
-                return checkRoverConflict(rover.getCoordinateX() - 1, rover.getCoordinateY());
+                return checkLocationAvaliable(rover.getCoordinateX() - 1, rover.getCoordinateY());
         }
         return false;
     }
 
-    private boolean checkRoverConflict(int coordinateX, int coordinateY) {
+    private boolean checkLocationAvaliable(int coordinateX, int coordinateY) {
         return coordinateY <= ySize
                 && coordinateY >= 0
                 && coordinateX <= xSize
