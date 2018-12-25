@@ -4,12 +4,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RoverMovementTest {
+public class RoverDirectionTest {
 
     private Rover rover;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         rover = new Rover(0,0, Direction.NORTH);
     }
 

@@ -2,6 +2,8 @@ package entity;
 
 import enumerator.Direction;
 
+import static enumerator.Direction.NORTH;
+
 public class Rover {
 
     private int coordinateX;
@@ -14,11 +16,11 @@ public class Rover {
         this.direction = direction;
     }
 
-    public void turnLeft(){
+    public void turnLeft() {
         this.direction = direction.getLeft();
     }
 
-    public void turnRight(){
+    public void turnRight() {
         this.direction = direction.getRight();
     }
 
@@ -33,4 +35,22 @@ public class Rover {
     public Direction getDirection() {
         return direction;
     }
+
+    public void move() {
+        switch (this.direction) {
+            case NORTH:
+                coordinateY = coordinateY+1;
+                break;
+            case EAST:
+                coordinateX = coordinateX+1;
+                break;
+            case SOUTH:
+                coordinateY = coordinateY-1;
+                break;
+            case WEST:
+                coordinateX = coordinateX-1;
+                break;
+        }
+    }
+
 }
