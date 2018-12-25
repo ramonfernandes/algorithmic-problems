@@ -54,14 +54,6 @@ public class Rover {
         return this;
     }
 
-    public void setCoordinateX(int coordinateX) {
-        this.coordinateX = coordinateX;
-    }
-
-    public void setCoordinateY(int coordinateY) {
-        this.coordinateY = coordinateY;
-    }
-
     @Override
     public String toString() {
         return coordinateX + " " + coordinateY + " " + getDirection();
