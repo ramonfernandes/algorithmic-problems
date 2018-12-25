@@ -36,7 +36,7 @@ public class Rover {
         return direction;
     }
 
-    public void move() {
+    public Rover move() {
         switch (this.direction) {
             case NORTH:
                 coordinateY = coordinateY+1;
@@ -51,6 +51,7 @@ public class Rover {
                 coordinateX = coordinateX-1;
                 break;
         }
+        return this;
     }
 
 }

@@ -24,9 +24,34 @@ public class Plateau {
     }
 
     private boolean checkIfIsPossibleToMove(Rover rover) {
-        return ((rover.getDirection().equals(Direction.NORTH) && (rover.getCoordinateY() < ySize))
-            || (rover.getDirection().equals(Direction.SOUTH) && (rover.getCoordinateY() > 0))
-            || (rover.getDirection().equals(Direction.EAST) && (rover.getCoordinateX() < xSize))
-            || (rover.getDirection().equals(Direction.WEST) && (rover.getCoordinateX() > 0)));
+        switch (rover.getDirection()) {
+            case NORTH:
+                return checkRoverConflict(rover.getCoordinateX(), rover.getCoordinateY() + 1);
+            case EAST:
+                return checkRoverConflict(rover.getCoordinateX() + 1, rover.getCoordinateY());
+            case SOUTH:
+                return checkRoverConflict(rover.getCoordinateX(), rover.getCoordinateY() - 1);
+            case WEST:
+                return checkRoverConflict(rover.getCoordinateX() - 1 , rover.getCoordinateY());
+        }
+        return false;
+    }
+
+    private boolean checkRoverConflict(int coordinateX, int coordinateY) {
+        return coordinateY <= ySize
+                && coordinateY >= 0
+                && coordinateX <= xSize
+                && coordinateX >= 0
+                && !checkRoverCollision(coordinateX, coordinateY);
+    }
+
+    private boolean checkRoverCollision(int coordinateX, int coordinateY) {
+        return plateau.stream()
+                    .anyMatch(roverPlaced -> roverPlaced.getCoordinateX() == coordinateX &&
+                                             roverPlaced.getCoordinateY() == coordinateY);
+    }
+
+    public boolean placeRover(Rover rover){
+        return plateau.add(rover);
     }
 }
