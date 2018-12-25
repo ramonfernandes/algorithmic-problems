@@ -3,8 +3,13 @@ package entity;
 import enumerator.Direction;
 import exception.NoValidPositionException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Plateau {
 
@@ -100,5 +105,28 @@ public class Plateau {
 
     public boolean placeRover(Rover rover) {
         return plateau.add(rover);
+    }
+
+    public void readAndExecuteCommands(Rover rover, String commands) {
+        try {
+            landRover(rover);
+            commands.chars().mapToObj(e -> (char) e)
+                    .forEachOrdered(command -> {
+                        switch (command) {
+                            case 'L':
+                                rover.turnLeft();
+                                break;
+                            case 'R':
+                                rover.turnRight();
+                                break;
+                            case 'M':
+                                moveRover(rover);
+                                break;
+                        }
+                    });
+
+        } catch (NoValidPositionException e) {
+            System.out.println(e.message);
+        }
     }
 }

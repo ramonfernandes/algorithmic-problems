@@ -61,4 +61,9 @@ public class Rover {
     public void setCoordinateY(int coordinateY) {
         this.coordinateY = coordinateY;
     }
+
+    @Override
+    public String toString() {
+        return coordinateX + " " + coordinateY + " " + getDirection();
+    }
 }
