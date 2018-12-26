@@ -60,5 +60,10 @@ Expected Output:
 
 ##### Important Points
 
-- A Rover can be set to land on an already occupied spot, in this case, this rover should land closest as possible to his initial desire;
+- A Rover can be set to land on an already occupied spot, in this case, this rover should land closest as possible to his initial landing spot;
 - A Rover can try to move into an already occupied spot or try to get out of the plateau, in this case, the rover should just ignore the movement, stay stopped and get the next movement command;
+
+##To do:
+
+- Add a verifier to if the rover will land out of the plateau it adjust it's place to closer as possible to his original goal;
+- Change the findNewPositionToLandTheRover algorythm to understand diagonals as a place close to it's original landing spot;
