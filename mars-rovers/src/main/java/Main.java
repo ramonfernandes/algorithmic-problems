@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             setupFilePath();
-            String fileName = "file";
+            String fileName = "testfile";
 
             List<String> lines = Files.readAllLines(
                     Paths.get(FILE_PATH + fileName));
@@ -27,7 +27,7 @@ public class Main {
             lines.remove(0);
 
             plateau = new Plateau(Integer.valueOf(firstLine[0]),
-                                           Integer.valueOf(firstLine[1]));
+                    Integer.valueOf(firstLine[1]));
             while (!lines.isEmpty()) {
                 String[] lineRover = lines.get(0).split(" ");
                 Rover rover = new Rover(Integer.valueOf(lineRover[0]),
@@ -51,7 +51,7 @@ public class Main {
         FILE_PATH = currentDirFile.getAbsolutePath() + separator + "src" + separator + "main" + separator + "java" + separator + "io" + separator + "files" + separator;
     }
 
-    private static void printOutput(){
+    private static void printOutput() {
         plateau.getPlateau().forEach(rover -> System.out.println(rover.toString()));
     }
 }
